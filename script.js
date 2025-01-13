@@ -13,12 +13,77 @@ canvas.style.zIndex = '9999'; // Make sure the canvas is on top
 var objectValue=1;
 
 //UI
+// Create the main container
+const container = document.createElement('div');
+container.style.width = '300px';
+container.style.margin = '0 auto';
 
+// Create the tabs
+const tabs = document.createElement('div');
+tabs.style.display = 'flex';
+
+// Create tab buttons
+const tabNames = ['Tab 1', 'Tab 2', 'Tab 3'];
+const tabContents = ['Content for Tab 1', 'Content for Tab 2', 'Content for Tab 3'];
+const tabButtons = [];
+
+tabNames.forEach((name, index) => {
+    const button = document.createElement('button');
+    button.textContent = name;
+    button.style.flex = '1';
+    button.style.padding = '10px';
+    button.style.border = '1px solid #ccc';
+    button.style.backgroundColor = '#f1f1f1';
+    button.style.cursor = 'pointer';
+    button.dataset.tab = `tab${index + 1}`;
+    
+    // Add click event listener
+    button.addEventListener('click', () => {
+        // Hide all contents
+        tabContentsDivs.forEach(div => div.style.display = 'none');
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => {
+            btn.style.backgroundColor = '#f1f1f1';
+            btn.style.borderBottom = '1px solid #ccc';
+        });
+        // Show the clicked tab's content
+        const activeTab = document.getElementById(button.dataset.tab);
+        activeTab.style.display = 'block';
+        // Set the clicked button as active
+        button.style.backgroundColor = '#fff';
+        button.style.borderBottom = 'none';
+    });
+
+    tabs.appendChild(button);
+    tabButtons.push(button);
+});
+// Create the content area
+const contentArea = document.createElement('div');
+contentArea.style.border = '1px solid #ccc';
+contentArea.style.padding = '10px';
+
+// Create tab content divs
+const tabContentsDivs = tabContents.map((content, index) => {
+    const div = document.createElement('div');
+    div.id = `tab${index + 1}`;
+    div.textContent = content;
+    div.style.display = index === 0 ? 'block' : 'none'; // Show the first tab by default
+    contentArea.appendChild(div);
+    return div;
+});
+
+// Append tabs and content area to the container
+container.appendChild(tabs);
+container.appendChild(contentArea);
+
+// Append the container to the body
+document.body.appendChild(container);
 //Object value
 const objectValueUpgrade = document.createElement('button');
 objectValueUpgrade.innerText = "Upgrade object worth";
 objectValueUpgrade.style.left='475px'; 
 objectValueUpgrade.style.top='100px';
+document.body.appendChild(objectValueUpgrade);
 
 
 let basket = {
