@@ -9,14 +9,19 @@ canvas.style.top = '0';
 canvas.style.left = '0';
 canvas.style.zIndex = '9999'; // Make sure the canvas is on top
 
-//Stats
-var objectValue=1;
+// Stats
+var objectValue = 1;
 
-//UI
+// UI
 // Create the main container
 const container = document.createElement('div');
 container.style.width = '300px';
-container.style.margin = '0 auto';
+container.style.margin = '20px auto'; // Center the container with some margin
+container.style.position = 'relative'; // Position relative for z-index to work
+container.style.zIndex = '10000'; // Ensure the container is above the canvas
+container.style.backgroundColor = '#fff'; // Background color for visibility
+container.style.border = '1px solid #ccc'; // Border for visibility
+container.style.padding = '10px'; // Padding for spacing
 
 // Create the tabs
 const tabs = document.createElement('div');
@@ -57,6 +62,7 @@ tabNames.forEach((name, index) => {
     tabs.appendChild(button);
     tabButtons.push(button);
 });
+
 // Create the content area
 const contentArea = document.createElement('div');
 contentArea.style.border = '1px solid #ccc';
@@ -78,13 +84,13 @@ container.appendChild(contentArea);
 
 // Append the container to the body
 document.body.appendChild(container);
-//Object value
+
+// Object value upgrade button
 const objectValueUpgrade = document.createElement('button');
 objectValueUpgrade.innerText = "Upgrade object worth";
-objectValueUpgrade.style.left='475px'; 
-objectValueUpgrade.style.top='100px';
+objectValueUpgrade.style.position = 'absolute'; // objectValueUpgrade.style.left = '475px'; 
+objectValueUpgrade.style.top = '100px';
 document.body.appendChild(objectValueUpgrade);
-
 
 let basket = {
     x: canvas.width / 2 - 25,
@@ -161,7 +167,7 @@ function moveBasket(event) {
 }
 
 objectValueUpgrade.addEventListener('click', function() {
-    objectValue+=1;
+    objectValue += 1;
 });
 document.addEventListener('keydown', moveBasket);
 setInterval(createFallingObject, 1000); // Create a new object every second
