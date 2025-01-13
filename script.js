@@ -29,13 +29,12 @@ tabs.style.display = 'flex';
 
 // Create tab buttons
 const tabNames = ['object worth', 'Tab 2', 'Tab 3'];
-const tabContents = [
+const tabContents = ['/ Object value upgrade button
 const objectValueUpgrade = document.createElement('button');
 objectValueUpgrade.innerText = "Upgrade object worth";
 objectValueUpgrade.style.position = 'absolute'; // objectValueUpgrade.style.left = '475px'; 
 objectValueUpgrade.style.top = '100px';
-document.body.appendChild(objectValueUpgrade);, 
-'Content for Tab 2', 'Content for Tab 3'];
+document.body.appendChild(objectValueUpgrade);, 'Content for Tab 2', 'Content for Tab 3'];
 const tabButtons = [];
 
 tabNames.forEach((name, index) => {
