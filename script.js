@@ -17,6 +17,8 @@ var objectValue=1;
 //Object value
 const objectValueUpgrade = document.createElement('button');
 objectValueUpgrade.innerText = "Upgrade object worth";
+objectValueUpgrade.style.left='475px'; 
+objectValueUpgrade.style.top='100px';
 
 
 let basket = {
