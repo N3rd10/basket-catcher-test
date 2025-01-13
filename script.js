@@ -18,7 +18,7 @@ let basket = {
 };
 
 let fallingObjects = [];
-let score = 0;
+let points = 0;
 
 function createFallingObject() {
     const x = Math.random() * (canvas.width - 20);
@@ -45,7 +45,7 @@ function updateFallingObjects() {
             i--;
         } else if (isCaught(fallingObjects[i])) {
             fallingObjects.splice(i, 1);
-            score++;
+            points++;
             i--;
         }
     }
@@ -58,17 +58,17 @@ function isCaught(object) {
            object.y + object.height > basket.y;
 }
 
-function drawScore() {
+function drawPoints() {
     ctx.fillStyle = 'black';
     ctx.font = '20px Arial';
-    ctx.fillText('Score: ' + score, 10, 20);
+    ctx.fillText('Points: ' + points, 10, 20);
 }
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBasket();
     drawFallingObjects();
-    drawScore();
+    drawPoints();
     updateFallingObjects();
 
     requestAnimationFrame(gameLoop);
