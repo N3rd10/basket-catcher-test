@@ -9,6 +9,16 @@ canvas.style.top = '0';
 canvas.style.left = '0';
 canvas.style.zIndex = '9999'; // Make sure the canvas is on top
 
+//Stats
+var objectValue=1;
+
+//UI
+
+//Object value
+const objectValueUpgrade = document.createElement('button');
+objectValueUpgrade.innerText = "Upgrade object worth";
+
+
 let basket = {
     x: canvas.width / 2 - 25,
     y: canvas.height - 30,
@@ -45,7 +55,7 @@ function updateFallingObjects() {
             i--;
         } else if (isCaught(fallingObjects[i])) {
             fallingObjects.splice(i, 1);
-            points++;
+            points += objectValue;
             i--;
         }
     }
@@ -65,7 +75,8 @@ function drawPoints() {
 }
 
 function gameLoop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);        
+    
     drawBasket();
     drawFallingObjects();
     drawPoints();
@@ -82,6 +93,10 @@ function moveBasket(event) {
     }
 }
 
+objectValueUpgrade.addEventListener('click', function() {
+    objectValue+=1;
+});
 document.addEventListener('keydown', moveBasket);
 setInterval(createFallingObject, 1000); // Create a new object every second
+
 gameLoop();
